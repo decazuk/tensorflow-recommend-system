@@ -66,7 +66,7 @@ def model(user_batch, item_batch, user_num, item_num, dim=5, device="/cpu:0"):
     
     with tf.device(device):
         # reduce_sum: Computes the sum of elements across dimensions of a tensor
-        infer = tf.reduce_sum(tf.mul(embd_user, embd_item), 1)
+        infer = tf.reduce_sum(tf.multiply(embd_user, embd_item), 1)
         infer = tf.add(infer, bias_global)
         infer = tf.add(infer, bias_user)
         infer = tf.add(infer, bias_item, name="svd_inference")
@@ -78,9 +78,9 @@ def model(user_batch, item_batch, user_num, item_num, dim=5, device="/cpu:0"):
 def loss(infer, regularizer, rate_batch, learning_rate=0.1, reg=0.1, device="/cpu:0"):
     with tf.device(device):
         # Use L2 loss to compute penalty
-        cost_l2 = tf.nn.l2_loss(tf.sub(infer, rate_batch))
+        cost_l2 = tf.nn.l2_loss(tf.subtract(infer, rate_batch))
         penalty = tf.constant(reg, dtype=tf.float32, shape=[], name="l2")
-        cost = tf.add(cost_l2, tf.mul(regularizer, penalty))
+        cost = tf.add(cost_l2, tf.multiply(regularizer, penalty))
         # 'Follow the Regularized Leader' optimizer
         # Reference: http://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf
         train_op = tf.train.FtrlOptimizer(learning_rate).minimize(cost)

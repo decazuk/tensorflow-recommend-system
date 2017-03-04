@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------
+Processing file 'test.py'
+ outputting to 'test1.py'
+--------------------------------------------------------------------------------
+
+'test.py' Line 69
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.mul' to 'tf.multiply'
+
+    Old:         infer = tf.reduce_sum(tf.mul(embd_user, embd_item), 1)
+                                       ~~~~~~                           
+    New:         infer = tf.reduce_sum(tf.multiply(embd_user, embd_item), 1)
+                                       ~~~~~~~~~~~                           
+
+'test.py' Line 81
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.sub' to 'tf.subtract'
+
+    Old:         cost_l2 = tf.nn.l2_loss(tf.sub(infer, rate_batch))
+                                         ~~~~~~                     
+    New:         cost_l2 = tf.nn.l2_loss(tf.subtract(infer, rate_batch))
+                                         ~~~~~~~~~~~                     
+
+'test.py' Line 83
+--------------------------------------------------------------------------------
+
+Renamed function 'tf.mul' to 'tf.multiply'
+
+    Old:         cost = tf.add(cost_l2, tf.mul(regularizer, penalty))
+                                        ~~~~~~                        
+    New:         cost = tf.add(cost_l2, tf.multiply(regularizer, penalty))
+                                        ~~~~~~~~~~~                        
+
+
